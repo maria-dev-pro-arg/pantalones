@@ -197,7 +197,7 @@ h1 {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 90px;
+  height: 130px;
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
@@ -205,10 +205,17 @@ h1 {
 
 .viandante {
   position: absolute;
-  bottom: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.figura {
+  bottom: 4px;
+}
+
+.pantalon {
+  bottom: 64px;
 }
 
 .viandante .pierna,
@@ -263,7 +270,9 @@ h1 {
 }
 
 .globo-pregunta {
-  margin-top: 2px;
+  position: absolute;
+  top: -20px;
+  left: 50%;
   width: 18px;
   height: 18px;
   border-radius: 50%;
@@ -329,16 +338,16 @@ h1 {
   0%,
   55% {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translate(-50%, 4px);
   }
   70%,
   90% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
   }
   100% {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translate(-50%, 4px);
   }
 }
 
