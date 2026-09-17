@@ -81,8 +81,10 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
-.globo span {
-  display: inline-block;
+.globo > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   white-space: nowrap;
   padding: 0.5rem 1rem;
   border-radius: 1rem;
@@ -95,17 +97,22 @@ h1 {
   animation: globo-pop 0.35s ease-out backwards;
 }
 
-.globo.color-1 span {
+.globo-emoji {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.globo.color-1 > span {
   background: color-mix(in srgb, var(--accent) 15%, white);
   border-color: color-mix(in srgb, var(--accent) 35%, white);
 }
 
-.globo.color-2 span {
+.globo.color-2 > span {
   background: color-mix(in srgb, var(--accent-secondary) 15%, white);
   border-color: color-mix(in srgb, var(--accent-secondary) 35%, white);
 }
 
-.globo.color-3 span {
+.globo.color-3 > span {
   background: color-mix(in srgb, var(--warn) 20%, white);
   border-color: color-mix(in srgb, var(--warn) 40%, white);
 }
