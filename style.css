@@ -1,36 +1,32 @@
 :root {
-  --cielo-arriba: #3fa9e8;
-  --cielo-abajo: #bdeaff;
-  --foreground: #1c3a56;
-  --muted: #3a6a8a;
-  --nube: #ffffff;
-  --contorno: #1c3a56;
-  --titulo: #ffb400;
-  --titulo-sombra: #e8622c;
-  --boton: #ff6a3d;
-  --boton-sombra: #c93f14;
-  --ketchup: #e8503a;
-  --mostaza: #ffc93c;
-  --lechuga: #7cb342;
-  --queso: #ffa726;
+  --fondo-arriba: #1b6ec2;
+  --fondo-abajo: #0a4a8f;
+  --foreground: #ffffff;
+  --muted: #d6e8fb;
+  --contorno: #0d0d0d;
+  --titulo: #ffd500;
+  --titulo-sombra: #da2128;
+  --boton: #da2128;
+  --boton-sombra: #8f0d11;
+  --ladrillo-1: #da2128;
+  --ladrillo-2: #ffd500;
+  --ladrillo-3: #006cb7;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --cielo-arriba: #0e3a5c;
-    --cielo-abajo: #1c5c82;
-    --foreground: #f2f8fc;
-    --muted: #bcdcf0;
-    --nube: #e7f4fb;
-    --contorno: #08202f;
-    --titulo: #ffc94a;
-    --titulo-sombra: #b8431c;
-    --boton: #ff7a4a;
-    --boton-sombra: #93300f;
-    --ketchup: #ff6b52;
-    --mostaza: #ffd75e;
-    --lechuga: #97d15b;
-    --queso: #ffb54d;
+    --fondo-arriba: #0a3a6b;
+    --fondo-abajo: #041d3a;
+    --foreground: #ffffff;
+    --muted: #aecbea;
+    --contorno: #000000;
+    --titulo: #ffdd33;
+    --titulo-sombra: #b8171f;
+    --boton: #e33338;
+    --boton-sombra: #6e0a0d;
+    --ladrillo-1: #e33338;
+    --ladrillo-2: #ffdd33;
+    --ladrillo-3: #1c85d6;
   }
 }
 
@@ -41,110 +37,15 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(to bottom, var(--cielo-arriba), var(--cielo-abajo));
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.16) 3px, transparent 3.5px) 0 0 / 32px 32px,
+    linear-gradient(to bottom, var(--fondo-arriba), var(--fondo-abajo));
   color: var(--foreground);
   font-family: "Fredoka", system-ui, sans-serif;
   overflow-x: hidden;
-  position: relative;
-}
-
-.nubes {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.nube {
-  position: absolute;
-  background: var(--nube);
-  border-radius: 999px;
-  opacity: 0.85;
-  filter: blur(0.5px);
-}
-
-.nube::before,
-.nube::after {
-  content: "";
-  position: absolute;
-  background: var(--nube);
-  border-radius: 999px;
-}
-
-.nube-1 {
-  width: 160px;
-  height: 56px;
-  top: -1%;
-  left: -3%;
-  animation: flotar 22s ease-in-out infinite;
-}
-.nube-1::before {
-  width: 80px;
-  height: 80px;
-  top: -36px;
-  left: 16px;
-}
-.nube-1::after {
-  width: 60px;
-  height: 60px;
-  top: -24px;
-  left: 90px;
-}
-
-.nube-2 {
-  width: 120px;
-  height: 44px;
-  top: 18%;
-  right: 8%;
-  animation: flotar 18s ease-in-out infinite reverse;
-}
-.nube-2::before {
-  width: 60px;
-  height: 60px;
-  top: -28px;
-  left: 12px;
-}
-.nube-2::after {
-  width: 46px;
-  height: 46px;
-  top: -18px;
-  left: 62px;
-}
-
-.nube-3 {
-  width: 140px;
-  height: 48px;
-  bottom: 10%;
-  left: 14%;
-  animation: flotar 26s ease-in-out infinite;
-}
-.nube-3::before {
-  width: 70px;
-  height: 70px;
-  top: -32px;
-  left: 14px;
-}
-.nube-3::after {
-  width: 50px;
-  height: 50px;
-  top: -20px;
-  left: 78px;
-}
-
-@keyframes flotar {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(24px);
-  }
 }
 
 main {
-  position: relative;
-  z-index: 1;
   max-width: 720px;
   margin: 0 auto;
   padding: 4rem 1.5rem 3rem;
@@ -152,9 +53,9 @@ main {
 }
 
 h1 {
-  font-family: "Luckiest Guy", "Fredoka", system-ui, sans-serif;
+  font-family: "Bungee", "Fredoka", system-ui, sans-serif;
   font-weight: 400;
-  font-size: 2.6rem;
+  font-size: 2.15rem;
   margin: 0;
   color: var(--titulo);
   letter-spacing: 0.5px;
@@ -164,7 +65,7 @@ h1 {
 }
 
 .subtitulo {
-  margin: 1rem auto 0;
+  margin: 1.1rem auto 0;
   max-width: 32rem;
   font-weight: 500;
   color: var(--muted);
@@ -178,8 +79,8 @@ h1 {
   font-weight: 600;
   color: #fff;
   background: var(--boton);
-  border: none;
-  border-radius: 999px;
+  border: 2px solid var(--contorno);
+  border-radius: 0.6rem;
   cursor: pointer;
   box-shadow: 0 5px 0 var(--boton-sombra);
   transition: transform 0.1s ease, box-shadow 0.1s ease;
@@ -202,24 +103,44 @@ h1 {
 
 .globo {
   position: absolute;
-  transform: translate(-50%, -50%);
 }
 
 .globo > span {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   white-space: nowrap;
-  padding: 0.6rem 1.1rem;
-  border-radius: 1.1rem;
+  padding: 0.65rem 1.1rem;
+  border-radius: 0.5rem;
   border: 2.5px solid var(--contorno);
-  background: #fff;
+  background: var(--color-ladrillo);
   color: var(--contorno);
   font-family: "Fredoka", system-ui, sans-serif;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   box-shadow: 3px 3px 0 var(--contorno);
   animation: globo-pop 0.35s ease-out backwards;
+}
+
+.globo > span::before,
+.globo > span::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-ladrillo);
+  border: 2px solid var(--contorno);
+}
+
+.globo > span::before {
+  left: 18%;
+}
+
+.globo > span::after {
+  left: 62%;
 }
 
 .globo-emoji {
@@ -228,15 +149,17 @@ h1 {
 }
 
 .globo.color-1 > span {
-  background: color-mix(in srgb, var(--ketchup) 18%, white);
+  --color-ladrillo: var(--ladrillo-1);
+  color: #fff;
 }
 
 .globo.color-2 > span {
-  background: color-mix(in srgb, var(--lechuga) 22%, white);
+  --color-ladrillo: var(--ladrillo-2);
 }
 
 .globo.color-3 > span {
-  background: color-mix(in srgb, var(--mostaza) 28%, white);
+  --color-ladrillo: var(--ladrillo-3);
+  color: #fff;
 }
 
 @keyframes globo-pop {
