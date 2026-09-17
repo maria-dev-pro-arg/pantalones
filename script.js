@@ -11,53 +11,67 @@ const RESPUESTAS = [
   "Se fueron de vacaciones sin vos",
   "Los está usando un gnomo",
   "Viajaron al pasado",
+  "Los está planchando un fantasma",
+  "Se los llevó el viento",
+  "En la dimensión de los calcetines perdidos",
+  "Nadie sabe, ni el Oráculo",
+  "Te los cambiaron por un cerdito",
+  "En una nube con forma de pantalón",
+  "Los confiscó un pulpo",
+  "Quedaron atrapados en otra dimensión",
 ];
 
-const COLUMNAS = 4;
-const FILAS = 3;
+const DURACION_VISIBLE_MS = 2500;
+const DURACION_FADE_MS = 400;
 
-function mezclar(items) {
-  const copia = [...items];
-  for (let i = copia.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copia[i], copia[j]] = [copia[j], copia[i]];
-  }
-  return copia;
+let ultimoIndice = -1;
+let temporizadorOcultar = null;
+let temporizadorQuitar = null;
+
+function elegirRespuesta() {
+  if (RESPUESTAS.length === 1) return RESPUESTAS[0];
+  let indice;
+  do {
+    indice = Math.floor(Math.random() * RESPUESTAS.length);
+  } while (indice === ultimoIndice);
+  ultimoIndice = indice;
+  return RESPUESTAS[indice];
 }
 
-function preguntar() {
+function mostrarGlobo() {
   const escenario = document.getElementById("escenario");
+
+  clearTimeout(temporizadorOcultar);
+  clearTimeout(temporizadorQuitar);
   escenario.innerHTML = "";
 
-  const anchoCelda = 100 / COLUMNAS;
-  const altoCelda = 100 / FILAS;
+  const texto = elegirRespuesta();
+  const left = Math.random() * 60 + 20;
+  const top = Math.random() * 60 + 15;
+  const rotate = Math.random() * 14 - 7;
+  const color = Math.floor(Math.random() * 3) + 1;
 
-  mezclar(RESPUESTAS).forEach((texto, i) => {
-    const col = i % COLUMNAS;
-    const fila = Math.floor(i / COLUMNAS);
-    const jitterX = (Math.random() - 0.5) * anchoCelda * 0.3;
-    const jitterY = (Math.random() - 0.5) * altoCelda * 0.3;
-    const left = col * anchoCelda + anchoCelda / 2 + jitterX;
-    const top = fila * altoCelda + altoCelda / 2 + jitterY;
-    const rotate = Math.random() * 14 - 7;
-    const delay = Math.random() * 0.5;
+  const globo = document.createElement("div");
+  globo.className = `globo color-${color}`;
+  globo.style.left = `${left}%`;
+  globo.style.top = `${top}%`;
+  globo.style.setProperty("transform", `translate(-50%, -50%) rotate(${rotate}deg)`);
 
-    const globo = document.createElement("div");
-    globo.className = `globo color-${(i % 3) + 1}`;
-    globo.style.left = `${left}%`;
-    globo.style.top = `${top}%`;
-    globo.style.setProperty("transform", `translate(-50%, -50%) rotate(${rotate}deg)`);
+  const burbuja = document.createElement("span");
+  burbuja.textContent = texto;
 
-    const burbuja = document.createElement("span");
-    burbuja.textContent = texto;
-    burbuja.style.animationDelay = `${delay}s`;
+  globo.appendChild(burbuja);
+  escenario.appendChild(globo);
 
-    globo.appendChild(burbuja);
-    escenario.appendChild(globo);
-  });
+  temporizadorOcultar = setTimeout(() => {
+    globo.classList.add("desvanecer");
+    temporizadorQuitar = setTimeout(() => {
+      globo.remove();
+    }, DURACION_FADE_MS);
+  }, DURACION_VISIBLE_MS);
 }
 
 document.getElementById("preguntar").addEventListener("click", () => {
-  preguntar();
+  mostrarGlobo();
   document.getElementById("preguntar").textContent = "Preguntar de nuevo";
 });
