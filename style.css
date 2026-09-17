@@ -191,3 +191,177 @@ h1 {
     transform: scale(0.85);
   }
 }
+
+.calle {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 90px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.viandante {
+  position: absolute;
+  bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.viandante .pierna,
+.viandante .brazo {
+  transform-box: fill-box;
+  transform-origin: 50% 0%;
+}
+
+.figura {
+  animation: cruzar-izq-der 19s linear infinite;
+}
+
+.figura .cabeza {
+  fill: var(--ladrillo-2);
+  stroke: var(--contorno);
+  stroke-width: 2;
+}
+
+.figura .ojo {
+  fill: var(--contorno);
+}
+
+.figura .torso {
+  fill: var(--ladrillo-3);
+  stroke: var(--contorno);
+  stroke-width: 2;
+}
+
+.figura .brazo {
+  fill: var(--ladrillo-3);
+  stroke: var(--contorno);
+  stroke-width: 2;
+}
+
+.figura .pierna {
+  fill: var(--contorno);
+  stroke: var(--contorno);
+  stroke-width: 2;
+}
+
+.figura .pierna-i {
+  animation: piernaA 0.55s ease-in-out infinite alternate;
+}
+.figura .pierna-d {
+  animation: piernaB 0.55s ease-in-out infinite alternate;
+}
+.figura .brazo-i {
+  animation: piernaB 0.55s ease-in-out infinite alternate;
+}
+.figura .brazo-d {
+  animation: piernaA 0.55s ease-in-out infinite alternate;
+}
+
+.globo-pregunta {
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--contorno);
+  color: var(--contorno);
+  font-family: "Fredoka", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: parpadeo-pregunta 4.5s ease-in-out infinite;
+}
+
+.pantalon {
+  animation: cruzar-der-izq 13s linear infinite 3s;
+}
+
+.pantalon svg {
+  transform: scaleX(-1);
+}
+
+.pantalon .cintura {
+  fill: var(--ladrillo-1);
+  stroke: var(--contorno);
+  stroke-width: 2;
+}
+
+.pantalon .pierna {
+  fill: var(--ladrillo-1);
+  stroke: var(--contorno);
+  stroke-width: 2;
+}
+
+.pantalon .pierna-i {
+  animation: piernaA 0.3s ease-in-out infinite alternate;
+}
+.pantalon .pierna-d {
+  animation: piernaB 0.3s ease-in-out infinite alternate;
+}
+
+@keyframes piernaA {
+  from {
+    transform: rotate(-24deg);
+  }
+  to {
+    transform: rotate(24deg);
+  }
+}
+
+@keyframes piernaB {
+  from {
+    transform: rotate(24deg);
+  }
+  to {
+    transform: rotate(-24deg);
+  }
+}
+
+@keyframes parpadeo-pregunta {
+  0%,
+  55% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  70%,
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@keyframes cruzar-izq-der {
+  0% {
+    left: -60px;
+  }
+  38% {
+    left: calc(100% + 60px);
+  }
+  100% {
+    left: calc(100% + 60px);
+  }
+}
+
+@keyframes cruzar-der-izq {
+  0% {
+    left: calc(100% + 60px);
+  }
+  38% {
+    left: -60px;
+  }
+  100% {
+    left: -60px;
+  }
+}
