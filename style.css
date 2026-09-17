@@ -1,0 +1,126 @@
+:root {
+  --background: #faf6f0;
+  --foreground: #2e2a26;
+  --muted: #7a7269;
+  --border: #e8e1d8;
+  --accent: #c96f4a;
+  --accent-foreground: #ffffff;
+  --accent-secondary: #7a9b76;
+  --warn: #e0a458;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1c1917;
+    --foreground: #f2ede7;
+    --muted: #a89f93;
+    --border: #3a332e;
+    --accent: #e08a65;
+    --accent-foreground: #1c1917;
+    --accent-secondary: #8fb08a;
+    --warn: #e8b36b;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.25rem;
+  margin: 0;
+}
+
+.subtitulo {
+  margin: 0.75rem auto 0;
+  max-width: 32rem;
+  color: var(--muted);
+}
+
+#preguntar {
+  margin-top: 2rem;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-foreground);
+  background: var(--accent);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  transition: opacity 0.15s ease;
+}
+
+#preguntar:hover {
+  opacity: 0.9;
+}
+
+#escenario {
+  position: relative;
+  margin-top: 2.5rem;
+  height: 440px;
+}
+
+.globo {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.globo span {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--foreground);
+  font-size: 0.9rem;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  animation: globo-pop 0.35s ease-out backwards;
+}
+
+.globo.color-1 span {
+  background: color-mix(in srgb, var(--accent) 15%, white);
+  border-color: color-mix(in srgb, var(--accent) 35%, white);
+}
+
+.globo.color-2 span {
+  background: color-mix(in srgb, var(--accent-secondary) 15%, white);
+  border-color: color-mix(in srgb, var(--accent-secondary) 35%, white);
+}
+
+.globo.color-3 span {
+  background: color-mix(in srgb, var(--warn) 20%, white);
+  border-color: color-mix(in srgb, var(--warn) 40%, white);
+}
+
+@keyframes globo-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
