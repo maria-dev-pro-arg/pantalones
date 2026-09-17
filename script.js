@@ -35,6 +35,14 @@ const RESPUESTAS = [
   { emoji: "🧟", texto: "Se los llevaron los zombies" },
   { emoji: "🎪", texto: "Se escaparon con el circo" },
   { emoji: "🧞", texto: "Un genio te concedió el deseo equivocado" },
+  { emoji: "🌪️", texto: "Se los llevó el Zonda" },
+  { emoji: "🚨", texto: "¡Los robaron!" },
+  { emoji: "🤔", texto: "La pregunta no es \"¿dónde están los ladrones?\"" },
+  { emoji: "😳", texto: "¡Los tiene puestos, señor!" },
+  { emoji: "🌊", texto: "En el río" },
+  { emoji: "🛏️", texto: "Abajo de la cama" },
+  { emoji: "🗑️", texto: "En el cesto de la basura" },
+  { emoji: "☀️", texto: "Tapando el Sol" },
 ];
 
 const DURACION_VISIBLE_MS = 2500;
