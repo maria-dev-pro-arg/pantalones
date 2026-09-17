@@ -1,24 +1,36 @@
 :root {
-  --background: #faf6f0;
-  --foreground: #2e2a26;
-  --muted: #7a7269;
-  --border: #e8e1d8;
-  --accent: #c96f4a;
-  --accent-foreground: #ffffff;
-  --accent-secondary: #7a9b76;
-  --warn: #e0a458;
+  --cielo-arriba: #3fa9e8;
+  --cielo-abajo: #bdeaff;
+  --foreground: #1c3a56;
+  --muted: #3a6a8a;
+  --nube: #ffffff;
+  --contorno: #1c3a56;
+  --titulo: #ffb400;
+  --titulo-sombra: #e8622c;
+  --boton: #ff6a3d;
+  --boton-sombra: #c93f14;
+  --ketchup: #e8503a;
+  --mostaza: #ffc93c;
+  --lechuga: #7cb342;
+  --queso: #ffa726;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1c1917;
-    --foreground: #f2ede7;
-    --muted: #a89f93;
-    --border: #3a332e;
-    --accent: #e08a65;
-    --accent-foreground: #1c1917;
-    --accent-secondary: #8fb08a;
-    --warn: #e8b36b;
+    --cielo-arriba: #0e3a5c;
+    --cielo-abajo: #1c5c82;
+    --foreground: #f2f8fc;
+    --muted: #bcdcf0;
+    --nube: #e7f4fb;
+    --contorno: #08202f;
+    --titulo: #ffc94a;
+    --titulo-sombra: #b8431c;
+    --boton: #ff7a4a;
+    --boton-sombra: #93300f;
+    --ketchup: #ff6b52;
+    --mostaza: #ffd75e;
+    --lechuga: #97d15b;
+    --queso: #ffb54d;
   }
 }
 
@@ -29,12 +41,110 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--background);
+  background: linear-gradient(to bottom, var(--cielo-arriba), var(--cielo-abajo));
   color: var(--foreground);
-  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Fredoka", system-ui, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.nubes {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nube {
+  position: absolute;
+  background: var(--nube);
+  border-radius: 999px;
+  opacity: 0.85;
+  filter: blur(0.5px);
+}
+
+.nube::before,
+.nube::after {
+  content: "";
+  position: absolute;
+  background: var(--nube);
+  border-radius: 999px;
+}
+
+.nube-1 {
+  width: 160px;
+  height: 56px;
+  top: -1%;
+  left: -3%;
+  animation: flotar 22s ease-in-out infinite;
+}
+.nube-1::before {
+  width: 80px;
+  height: 80px;
+  top: -36px;
+  left: 16px;
+}
+.nube-1::after {
+  width: 60px;
+  height: 60px;
+  top: -24px;
+  left: 90px;
+}
+
+.nube-2 {
+  width: 120px;
+  height: 44px;
+  top: 18%;
+  right: 8%;
+  animation: flotar 18s ease-in-out infinite reverse;
+}
+.nube-2::before {
+  width: 60px;
+  height: 60px;
+  top: -28px;
+  left: 12px;
+}
+.nube-2::after {
+  width: 46px;
+  height: 46px;
+  top: -18px;
+  left: 62px;
+}
+
+.nube-3 {
+  width: 140px;
+  height: 48px;
+  bottom: 10%;
+  left: 14%;
+  animation: flotar 26s ease-in-out infinite;
+}
+.nube-3::before {
+  width: 70px;
+  height: 70px;
+  top: -32px;
+  left: 14px;
+}
+.nube-3::after {
+  width: 50px;
+  height: 50px;
+  top: -20px;
+  left: 78px;
+}
+
+@keyframes flotar {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(24px);
+  }
 }
 
 main {
+  position: relative;
+  z-index: 1;
   max-width: 720px;
   margin: 0 auto;
   padding: 4rem 1.5rem 3rem;
@@ -42,32 +152,46 @@ main {
 }
 
 h1 {
-  font-size: 2.25rem;
+  font-family: "Luckiest Guy", "Fredoka", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 2.6rem;
   margin: 0;
+  color: var(--titulo);
+  letter-spacing: 0.5px;
+  text-shadow:
+    2px 2px 0 var(--titulo-sombra),
+    4px 4px 0 var(--contorno);
 }
 
 .subtitulo {
-  margin: 0.75rem auto 0;
+  margin: 1rem auto 0;
   max-width: 32rem;
+  font-weight: 500;
   color: var(--muted);
 }
 
 #preguntar {
   margin-top: 2rem;
-  padding: 0.75rem 1.75rem;
-  font-size: 0.95rem;
+  padding: 0.85rem 2rem;
+  font-family: "Fredoka", system-ui, sans-serif;
+  font-size: 1rem;
   font-weight: 600;
-  color: var(--accent-foreground);
-  background: var(--accent);
+  color: #fff;
+  background: var(--boton);
   border: none;
   border-radius: 999px;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-  transition: opacity 0.15s ease;
+  box-shadow: 0 5px 0 var(--boton-sombra);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 #preguntar:hover {
-  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+#preguntar:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 var(--boton-sombra);
 }
 
 #escenario {
@@ -86,35 +210,33 @@ h1 {
   align-items: center;
   gap: 0.5rem;
   white-space: nowrap;
-  padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  border: 1px solid var(--border);
+  padding: 0.6rem 1.1rem;
+  border-radius: 1.1rem;
+  border: 2.5px solid var(--contorno);
   background: #fff;
-  color: var(--foreground);
+  color: var(--contorno);
+  font-family: "Fredoka", system-ui, sans-serif;
   font-size: 0.9rem;
-  font-weight: 500;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  box-shadow: 3px 3px 0 var(--contorno);
   animation: globo-pop 0.35s ease-out backwards;
 }
 
 .globo-emoji {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   line-height: 1;
 }
 
 .globo.color-1 > span {
-  background: color-mix(in srgb, var(--accent) 15%, white);
-  border-color: color-mix(in srgb, var(--accent) 35%, white);
+  background: color-mix(in srgb, var(--ketchup) 18%, white);
 }
 
 .globo.color-2 > span {
-  background: color-mix(in srgb, var(--accent-secondary) 15%, white);
-  border-color: color-mix(in srgb, var(--accent-secondary) 35%, white);
+  background: color-mix(in srgb, var(--lechuga) 22%, white);
 }
 
 .globo.color-3 > span {
-  background: color-mix(in srgb, var(--warn) 20%, white);
-  border-color: color-mix(in srgb, var(--warn) 40%, white);
+  background: color-mix(in srgb, var(--mostaza) 28%, white);
 }
 
 @keyframes globo-pop {
